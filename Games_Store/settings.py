@@ -27,7 +27,7 @@ SECRET_KEY = 'django-insecure-h!(sw49#7t!y5+jdkus#3@s5)ruh92tvp2fbd%pei8c!wq3x57
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['games-njee.onrender.com', 'localhost', '127.0.0.1']
 
 
 # Application definition
