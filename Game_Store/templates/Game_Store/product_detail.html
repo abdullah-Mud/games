@@ -1,0 +1,224 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ product.name }}</title>
+    <meta name="description" content="{{ product.description }}">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f8f8;
+        }
+        .container {
+            width: 90%;
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #333;
+        }
+        .product-image {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .product-image img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        .product-info {
+            padding: 15px;
+        }
+        .product-info p {
+            font-size: 1.2em;
+            color: #555;
+            line-height: 1.5;
+        }
+        .button {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-top: 20px;
+            text-align: center;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+        .button:hover {
+            background-color: #0056b3;
+        }
+        .social-buttons {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        .social-button {
+            width: 50px;
+            height: 50px;
+            margin: 0 10px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s;
+        }
+        .social-button:hover {
+            transform: translateY(-3px);
+        }
+        .whatsapp { background-color: #25D366; }
+        .telegram { background-color: #0088CC; }
+        .instagram { background-color: #E1306C; }
+        .social-button img {
+            width: 24px;
+            height: 24px;
+        }
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 1.5em;
+            }
+            .product-info p {
+                font-size: 1em;
+            }
+            .button {
+                padding: 8px 16px;
+            }
+            .social-button {
+                width: 40px;
+                height: 40px;
+            }
+        }
+        .navbar {
+            background-color: #007bff;
+            padding: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: fixed; /* يجعل الشريط ثابتًا في الأعلى */
+            top: 0; /* يحدد الموقع من الأعلى */
+            width: 100%; /* يجعل الشريط يمتد على عرض الصفحة */
+            z-index: 1000; /* يضمن ظهور الشريط فوق المحتوى */
+        }
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            padding: 0px 0px;
+            margin: 0 5px;
+            border-radius: 5px;
+        }
+        .navbar a:hover {
+            background-color: #0056b3;
+        }
+        .navbar .logo {
+            font-size: 24px;
+            font-weight: bold;
+        }
+        .content {
+            margin-top: 70px; /* يجب أن يكون أكبر من ارتفاع الشريط */
+        }
+        .search-container {
+            position: fixed; /* تثبيت العنصر */
+            /* المسافة من الأسفل */
+            left: 20%; /* محاذاة للوسط */
+            transform: translateX(-50%); /* محاذاة إلى المركز */
+            display: flex;
+            align-items: center;
+            z-index: 10; /* تأكد أنه يظهر فوق المحتوى */
+        }
+        
+        .search-input {
+            padding: 10px;
+            width: 70%;
+            max-width: 400px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin-right: 5px;
+            transition: border-color 0.3s;
+        }
+        
+        .search-input:focus {
+            border-color: #007bff;
+            outline: none;
+        }
+        
+        .search-button {
+            padding: 10px 10px;
+            background-color: #007bff; /* اللون الأساسي */
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+        
+        .search-button:hover {
+            background-color: #0056b3; /* لون عند التحويم */
+            transform: translateY(-2px); /* تأثير التحويم */
+        }
+        .description-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.description-container p {
+    border: 1px solid #ccc; /* إطار بلون رمادي */
+    padding: 10px; /* مساحة داخلية */
+    margin: 5px 0; /* مساحة بين الفقرات */
+    border-radius: 5px; /* زوايا دائرية */
+}
+    </style>
+</head>
+<body>
+    <div class="navbar" style="direction:rtl;">
+        <div class="logo" style="padding-right:2%;margin-left:-150px"><img src="{% static 'game_store.png' %}" width=40% ></div>
+        <div class="menu"  style="padding-left:35%;">
+            <a href="{% url 'product_list' %}"><b>الرئيسية</b></a>
+            <a href="{% url 'about' %}"><b>من نحن</b></a>
+        </div>
+    <div class="search-container">
+        <input type="text" class="search-input" placeholder="ابحث عن منتج..." id="search-input">
+        <button class="search-button" onclick="searchProduct()"><b>بحث</b></button>
+        
+    </div>
+        </div>
+    <div class="container" style="margin-top:5%">
+        <h1>{{ product.name }}</h1>
+        <div class="product-image">
+            <img src="{{ product.image.url }}" alt="{{ product.name }}">
+        </div>
+        <div class="product-info">
+            <div class="product-description">
+                <div class="description-container">
+                    {{ product.description|linebreaks }}
+                </div>
+            </div> </div>
+            <a href="{% url 'product_list' %}" class="button">عودة إلى القائمة</a>
+       
+        <div class="social-buttons">
+           
+            <a href="https://wa.me/963952632892?text={{ product.name }}: {{ product.description }}" target="_blank" class="social-button whatsapp">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
+            </a>
+            <a href="https://t.me/share/url?url= t.me/ULTESTORE" target="_blank" class="social-button telegram">
+                <img src="https://img.icons8.com/color/48/000000/telegram-app.png" alt="Telegram">
+            </a>
+            <a href="https://www.instagram.com/spaneso5/" target="_blank" class="social-button instagram">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" alt="Instagram">
+            </a>
+        </div>
+    </div>
+    
+</body>
+</html>

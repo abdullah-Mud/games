@@ -1,0 +1,212 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <title>من نحن</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f8f8;
+            direction:rtl;
+        }
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #333;
+        }
+        .about-info {
+            margin-bottom: 30px;
+        }
+        .about-info h2 {
+            color: #007bff;
+            margin-bottom: 10px;
+        }
+        .about-info p {
+            line-height: 1.6;
+            color: #555;
+        }
+        .team {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+        }
+        .team-member {
+            background-color: #f0f0f0;
+            border-radius: 8px;
+            margin: 10px;
+            padding: 15px;
+            text-align: center;
+            width: 200px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+        .team-member:hover {
+            transform: scale(1.05);
+        }
+        .team-member img {
+            width: 100%;
+            border-radius: 50%;
+            margin-bottom: 10px;
+        }
+        .team-member h3 {
+            margin: 10px 0 5px;
+            color: #333;
+        }
+        .team-member p {
+            color: #777;
+        }
+        @media (max-width: 600px) {
+            .team {
+                flex-direction: column;
+                align-items: center;
+            }
+            .team-member {
+                width: 80%;
+            }
+        }
+
+        .navbar {
+            background-color: #007bff;
+            padding: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: fixed; /* يجعل الشريط ثابتًا في الأعلى */
+            top: 0; /* يحدد الموقع من الأعلى */
+            width: 100%; /* يجعل الشريط يمتد على عرض الصفحة */
+            z-index: 1000; /* يضمن ظهور الشريط فوق المحتوى */
+        }
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            padding: 10px 15px;
+            margin: 0 5px;
+            border-radius: 5px;
+        }
+        .navbar a:hover {
+            background-color: #0056b3;
+        }
+        .navbar .logo {
+            font-size: 24px;
+            font-weight: bold;
+        }
+        .content {
+            margin-top: 70px; /* يجب أن يكون أكبر من ارتفاع الشريط */
+        }
+        .search-container {
+            position: fixed; /* تثبيت العنصر */
+            /* المسافة من الأسفل */
+            left: 20%; /* محاذاة للوسط */
+            transform: translateX(-50%); /* محاذاة إلى المركز */
+            display: flex;
+            align-items: center;
+            z-index: 10; /* تأكد أنه يظهر فوق المحتوى */
+        }
+        
+        .search-input {
+            padding: 10px;
+            width: 70%;
+            max-width: 400px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin-right: 5px;
+            transition: border-color 0.3s;
+        }
+        
+        .search-input:focus {
+            border-color: #007bff;
+            outline: none;
+        }
+        
+        .search-button {
+            padding: 10px 15px;
+            background-color: #007bff; /* اللون الأساسي */
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+        
+        .search-button:hover {
+            background-color: #0056b3; /* لون عند التحويم */
+            transform: translateY(-2px); /* تأثير التحويم */
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <div class="logo" style="padding-right:2%;margin-left:-170px;margin-right:-20px"><img src="{% static 'game_store.png' %}" width=40% ></div>
+     
+        <div class="menu"  style="padding-left:40%;">
+            <a href="{% url 'product_list' %}">الرئيسية</a>
+            <a href="{% url 'about' %}">من نحن</a>
+        </div>
+    <div class="search-container">
+        <input type="text" class="search-input" placeholder="ابحث عن منتج..." id="search-input">
+        <button class="search-button" onclick="searchProduct()">بحث</button>
+        
+    </div>
+        </div>
+    </div>
+
+  
+    <div class="container">
+        <h1 >من نحن</h1>
+        <div class="about-info">
+            <h2>معلومات عنا</h2>
+            <p>نحن شركة رائدة في مجال شحن الألعاب، نقدم مجموعة متنوعة من الأسعار والعروض للألعاب الممتعة والمثيرة. هدفنا هو توفير تجربة فريدة للمستخدمين من خلال تقديم سرعة وأداء عالي الجودة وخدمة عملاء ممتازة.</p>
+            <p>نحن نؤمن بأهمية معلومات عملائنا، ونعمل بجد لتلبية احتياجات عملائنا وتجاوز توقعاتهم.</p>
+        </div>
+        <h2>للتواصل</h2>
+        <div class="team">
+            <div class="team-member">
+                <a href="https://wa.me/?text={{ product.name }}: {{ product.description }}" target="_blank" class="social-button whatsapp">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
+                
+                <h3>واتس اب</h3>
+                <p>مدير المشروع</p></a>
+            </div>
+            <div class="team-member">
+                <a href="https://t.me/your_channel" target="_blank">
+                    <i class="fab fa-telegram-plane" style="font-size: 1300%; color: #0088cc;"></i>
+                <h3>تيليجرام</h3>
+                <p>القناة الخاصة بنا</p>
+            </div></a>
+            <div class="team-member">
+                <a href="https://www.instagram.com/" target="_blank" class="social-button instagram">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" alt="Instagram">
+                
+                <h3>إنستيغرام</h3>
+                <p>صفحتنا العامة</p></a>
+            </div>
+        </div>
+    </div>
+    
+<script>
+    function searchProduct() {
+        const input = document.getElementById('search-input').value;
+        if (input) {
+            // قم بتوجيه المستخدم إلى صفحة البحث مع اسم المنتج
+            window.location.href = `/?search=${encodeURIComponent(input)}`;
+        } else {
+            alert("الرجاء إدخال اسم المنتج للبحث.");
+        }
+    }
+</script>
+</body>
+</html>
